@@ -95,7 +95,7 @@ router.post("/breed",async(req,res)=>{
   const maleId=req.body.maleId;
   const femaleId=req.body.femaleId;
   const dateOfExpiry=req.body.dateOfExpiry;
-
+const breedId=req.body.breedId;
   if(!user){res.status(400).json({success:false,message:"user not exist"})}
   else{
       let countMale=await puppyFarmAdd.findOne({id:maleId})
@@ -111,8 +111,8 @@ router.post("/breed",async(req,res)=>{
       }
       else{
       countFemale=parseInt(countFemale.count)}
-      await puppyFarmAdd.findOneAndUpdate({id:maleId,isBreeding:true,count:countMale+1});
-      await puppyFarmAdd.findOneAndUpdate({id:femaleId,isBreeding:true,count:countFemale+1});
+      await puppyFarmAdd.findOneAndUpdate({id:maleId,isBreeding:true,count:countMale+1,breedId:breedId});
+      await puppyFarmAdd.findOneAndUpdate({id:femaleId,isBreeding:true,count:countFemale+1,breedId:breedId});
       res.status(200).json({success:true,message:"breeding done and count updated"})
   }
 })

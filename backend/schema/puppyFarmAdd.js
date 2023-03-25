@@ -27,6 +27,9 @@ const puppyFarmAdd = new mongoose.Schema({
         type:Boolean,
         
     },
+    breedId:{
+        type:String,
+    },
     count:{
         type:Number,
         
