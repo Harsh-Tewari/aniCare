@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const petUser = require("../schema/petParent");
 const bcrypt = require("bcrypt");
-
+const petAdd=require("../schema/pet")
 
 router.post("/register", async (req, res) => {
     const email=req.body.email;
@@ -50,7 +50,7 @@ router.post("/signIn", async (req, res) => {
 });
 router.post("/fetch",async(req,res)=>{
   const email=req.body.email;
-  const parent=await petUser.findOne({email:email})
+  const parent=await petAdd.find({parentId:email})
   if(!parent){res.status(400).json({success:false,message:"pet parent doesnot exist"})}
   else{
     res.status(200).json({data:parent})
