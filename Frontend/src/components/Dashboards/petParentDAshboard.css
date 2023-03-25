@@ -1,6 +1,7 @@
 #ppd {
   background-color: #f2fff7;
   min-height: 100vh;
+  padding-bottom: 3rem;
 }
 .centraldivppd {
   min-height: 70vh;

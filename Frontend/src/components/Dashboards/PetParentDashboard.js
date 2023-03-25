@@ -6,8 +6,17 @@ export default function PetParentDashboard() {
   const [info, setinfo] = useState([]);
   const [pic, setPic] = useState("");
   const [name, setname] = useState("");
+  const [pname, setpname] = useState("");
   const [doct, setdoct] = useState([]);
-  const navigate=useNavigate();
+  const [show, setShow] = useState(false);
+
+  const handleClick = (e) => {
+    console.log(show);
+    if (e.target.name === "showpass") {
+      setShow(!show);
+    }
+  };
+  const navigate = useNavigate();
   const fetchData = async () => {
     const email = localStorage.getItem("petParentEmail");
     const dat = { email };
@@ -24,10 +33,10 @@ export default function PetParentDashboard() {
     console.log(check.data);
     setinfo(check.data);
   };
-  const Logout=()=>{
-    localStorage.removeItem("farm_email")
-    navigate("/")
-  }
+  const Logout = () => {
+    localStorage.removeItem("farm_email");
+    navigate("/");
+  };
   const fetchParent = async () => {
     const email = localStorage.getItem("petParentEmail");
     const dat = { email };
@@ -41,8 +50,8 @@ export default function PetParentDashboard() {
     });
 
     const check = await res.json();
-    console.log(check.data)
-    setname(check.data.name);
+
+    setpname(check.data.name);
   };
 
   const fetchAppointments = async () => {
@@ -154,14 +163,12 @@ export default function PetParentDashboard() {
             </a>
           </li>
           <li>
-          <button onClick={Logout}>
-              Logout
-            </button>
+            <button onClick={Logout}>Logout</button>
           </li>
         </ul>
       </nav>
       <div className="centraldivppd">
-        <h1 id="ppdh1">Welcome, {name}</h1>
+        <h1 id="ppdh1">Welcome, Pet Parent</h1>
         <table>
           <tr>
             <th>Pet Name</th>
@@ -194,11 +201,11 @@ export default function PetParentDashboard() {
             );
           })}
         </table>
-        <button type="submit" id="addpt" onClick={add}>
+        <button name="showpass" id="addpt" onClick={handleClick}>
           Add Pet +
         </button>
         <br />
-        <NewPet></NewPet>
+        {show ? <NewPet /> : <br />}
         <table>
           <tr>
             <th>Hospital</th>
