@@ -21,7 +21,7 @@
 #navbar ul {
   display: flex;
   justify-content: space-around;
-  min-width: 40vw;
+  min-width: 52vw;
 }
 #navbar ul li {
   list-style: none;

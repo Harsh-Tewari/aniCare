@@ -21,6 +21,9 @@ const Homepage = () => {
           <li className="item">
             <a href="#">Govt Login</a>
           </li>
+          <li className="item">
+            <a href="#">Vet Login</a>
+          </li>
         </ul>
       </nav>
       <section>

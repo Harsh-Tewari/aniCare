@@ -35,7 +35,7 @@ export default function GovLogin(props) {
     if (email.length === 0 || password.length === 0) {
       return;
     }
-    const res = await fetch("/api/govLogin/login", {
+    const res = await fetch("/api/govLogin/HospitalLogin", {
       method: "POST",
       headers: {
         //always use this

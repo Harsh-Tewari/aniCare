@@ -20,7 +20,7 @@ function App() {
       {/* <PetParentLogin /> */}
       {/* <PuppyFarm /> */}
       {/* <GovSignin /> */}
-      {/* <VetLog /> */}
+      <VetLog />
       <Homepage />
     </div>
   );
