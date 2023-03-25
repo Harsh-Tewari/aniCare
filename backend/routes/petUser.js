@@ -56,5 +56,17 @@ router.post("/fetch",async(req,res)=>{
     res.status(200).json({data:parent})
   }
 })
+router.post("/book",async(req,res)=>{
+  const email=req.body.email;
+  const hospitalBooked=req.body.hospitalBooked
+  await petUser.findOneAndUpdate({parentId:email,hospitalBooked:hospitalBooked})
+  await petUser.findOneAndUpdate({parentId:email,bookingStatus:"pending"})
+  res.status(200).json({success:true,message:"hospitalBooked"})
+})
+router.post("/fetchHospital",async(req,res)=>{
+  const hospital=req.body.hospital;
+  const data=await petUser.find({hospitalBooked:hospital})
+  res.status(200).json({success:true,data:data})
+})
 module.exports = router;
 

@@ -24,6 +24,12 @@ const petParent = new mongoose.Schema({
     pincode:{
         type:String,
         
+    },
+    hospitalBooked:{
+        type:String
+    },
+    bookingStatus:{
+        type:String
     }
 })
 

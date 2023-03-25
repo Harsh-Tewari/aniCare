@@ -6,11 +6,16 @@ import PetParentDashboard from "./components/Dashboards/PetParentDashboard";
 import PuppyFarm from "./components/PuppyFarmLogin/PuppyFarm";
 import GovSignin from "./components/GovLogin/GovSignin";
 import VetLog from "./components/VetLog.js/VetLog";
+import HospitalList from "./components/HospitalList";
+import HospitalDashboard from "./components/HospitalDashboard";
 
 function App() {
   return (
     <div className="App">
       {/* <PetParentDashboard /> */}
+      <PetParentDashboard />
+      <HospitalList></HospitalList>
+      <HospitalDashboard></HospitalDashboard>
       {/* <PetParentLogin /> */}
       {/* <PuppyFarm /> */}
       {/* <GovSignin /> */}
