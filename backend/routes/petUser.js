@@ -68,5 +68,15 @@ router.post("/fetchHospital",async(req,res)=>{
   const data=await petUser.find({hospitalBooked:hospital})
   res.status(200).json({success:true,data:data})
 })
+router.post("/accept",async(req,res)=>{
+  const email=req.body.email;
+  await petUser.findOneAndUpdate({email:email,bookingStatus:"accepted"})
+  res.status(200).json({success:true,message:"appointment accepted"})
+})
+router.post("/decline",async(req,res)=>{
+  const email=req.body.email;
+  await petUser.findOneAndUpdate({email:email,bookingStatus:"declined"})
+  res.status(200).json({success:true,message:"appointment declined"})
+})
 module.exports = router;
 
