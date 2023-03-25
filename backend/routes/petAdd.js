@@ -24,7 +24,7 @@ router.post("/add", async (req, res) => {
     parentId,
   });
   if (pet) {
-    res.status(201).send("Pet Added Successfully");
+    res.status(200).json({success:true});
   } else {
     res.status(400);
     throw new Error("Unable to create user");
