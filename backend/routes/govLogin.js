@@ -103,23 +103,27 @@ router.post("/appointRequest", async (req, res) => {
   res.status(200).json({ success: true, data: data });
 });
 
-router.post("/rateHospital",async(req,res)=>{
-  const email=req.body.email;
-  let rating =req.body.rating
-  rating=parseInt(rating);
+router.post("/rateHospital", async (req, res) => {
+  const email = req.body.email;
+  let rating = req.body.rating;
+  rating = parseInt(rating);
 
-  let count=await hospitalRating.findOne({email:email})
-  if(count!==null){
-    count=parseInt(count);
-    count=count+1;
-  }
-  else{
-    count=1;
+  let count = await hospitalRating.findOne({ email: email });
+  if (count !== null) {
+    count = parseInt(count);
+    count = count + 1;
+  } else {
+    count = 1;
   }
 
-  rating=(rating*count)/count;
-  rating=JSON.stringify(rating)
-  await hospitalRating.findOneAndUpdate({email:email,rating:rating})
-  res.status(200).json({success:true})
-})
+  rating = (rating * count) / count;
+  rating = JSON.stringify(rating);
+  await hospitalRating.findOneAndUpdate({ email: email, rating: rating });
+  res.status(200).json({ success: true });
+});
+
+router.post("/fetchRating", async (req, res) => {
+  const ans = await hospitalRating.find();
+  res.status(200).json({ success: true, data: ans });
+});
 module.exports = router;

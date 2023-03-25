@@ -46,8 +46,14 @@ router.get("/vaccine", async (req, res) => {
 });
 
 router.post("/docupload", async (req, res) => {
-  let { parentId, ln } = req.body;
-  let dog = await Pet.findOneAndUpdate({ parentId, prescription: ln });
+  let { email, ln } = req.body;
+  console.log("ln ", ln);
+  // const str = ln.pic;
+  // console.log("link ", str);
+  let dog = await Pet.findOneAndUpdate({
+    parentId: email,
+    prescription: ln,
+  });
   if (dog) {
     console.log(dog);
     res.status(200).json({

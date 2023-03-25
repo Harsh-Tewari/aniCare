@@ -95,6 +95,7 @@ export default function PetParentDashboard() {
   const updatepresc = async (ln) => {
     const email = localStorage.getItem("petParentEmail");
     const dat = { email, ln };
+    console.log("ln hai ", ln);
     const res = await fetch("/api/pet/docupload", {
       method: "POST",
       headers: {
@@ -106,28 +107,32 @@ export default function PetParentDashboard() {
 
     const check = await res.json();
     console.log(check);
+    if (check.success) {
+      alert("uploaded!");
+    }
   };
-const rate=async(event ,hospitalName)=>{
-  // let a=document.getElementById("rating")
-  const element=event.currentTarget;
-        var parent =element.parentNode;
-        var hospitalBooked=parent.querySelector("input");
-        const rating=hospitalBooked.value
-        
+  const rate = async (event, hospitalName) => {
+    // let a=document.getElementById("rating")
+    const element = event.currentTarget;
+    var parent = element.parentNode;
+    var hospitalBooked = parent.querySelector("input");
+    const rating = hospitalBooked.value;
 
-  const dat={hospitalName,rating}
-  const res = await fetch("/api/govLogin/rateHospital", {
-    method: "POST",
-    headers: {
-      //always use this
-      "content-type": "application/json",
-    },
-    body: JSON.stringify(dat),
-  });
-  const check=await res.json(); 
-  console.log(check)
-
-}
+    const dat = { hospitalName, rating };
+    const res = await fetch("/api/govLogin/rateHospital", {
+      method: "POST",
+      headers: {
+        //always use this
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(dat),
+    });
+    const check = await res.json();
+    console.log(check);
+    if (check.success) {
+      alert("Ratings Provided Successfully!");
+    }
+  };
   const postDetails = (pics) => {
     if (pics === undefined) {
       alert("choose a document");
@@ -150,14 +155,15 @@ const rate=async(event ,hospitalName)=>{
       })
         .then((res) => res.json())
         .then((data) => {
-          setPic(data.url.toString());
-          console.log(data.url.toString());
-          updatepresc(pic);
+          const ln = data.url.toString();
+          setPic(ln);
+          console.log(ln);
+          updatepresc(ln);
         })
         .catch((err) => {
           console.log(err);
         });
-      console.log("link mil gayi");
+      console.log("uploading...");
     } else {
       alert("please select valid doc");
       return;
@@ -173,14 +179,7 @@ const rate=async(event ,hospitalName)=>{
         />
         <ul>
           <li>
-            <a href="/" target="_blank">
-              Vaccination Appointment
-            </a>
-          </li>
-          <li>
-            <a href="/" target="_blank">
-              Schedule Check-up
-            </a>
+            <Link to={"/hospitalList"}>Schedule Appointment</Link>
           </li>
           <li>
             <button onClick={Logout}>Logout</button>
@@ -230,6 +229,7 @@ const rate=async(event ,hospitalName)=>{
           <tr>
             <th>Hospital</th>
             <th>Appointment Status</th>
+            <th>Provide Rating</th>
           </tr>
 
           {doct.map((item) => {
@@ -237,8 +237,19 @@ const rate=async(event ,hospitalName)=>{
               <tr>
                 <td>{item.hospitalBooked}</td>
                 <td>{item.bookingStatus}</td>
-                <input type="text" id="rating"  placeholder="rating between 1-5"/>
-                <button style={{backgroundColor:"red"}} onClick={(event)=>{rate(event,item.hospitalBooked)}}>Rate</button>
+                <input
+                  type="text"
+                  id="rating"
+                  placeholder="rating between 1-5"
+                />
+                <button
+                  className="ratebut"
+                  onClick={(event) => {
+                    rate(event, item.hospitalBooked);
+                  }}
+                >
+                  Rate
+                </button>
               </tr>
             );
           })}

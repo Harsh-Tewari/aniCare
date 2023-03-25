@@ -66,3 +66,9 @@ ul {
   color: white;
   font-size: larger;
 }
+.ratebut {
+  background-color: green;
+  color: white;
+  padding: 0.2rem 1rem;
+  border-radius: 10px;
+}
