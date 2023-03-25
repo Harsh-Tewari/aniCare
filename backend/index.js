@@ -4,7 +4,7 @@ const bodyParser = require("body-parser");
 const connectDB = require("./connect/mongoose");
 
 connectDB();
-
+ 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 

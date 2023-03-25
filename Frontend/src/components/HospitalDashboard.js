@@ -22,11 +22,35 @@ const HospitalDashboard = () => {
     useEffect(() => {
       fetchDataHospital();
     }, [])
-    const accept=()=>{
-      
+    const accept=async()=>{
+      const email=localStorage.getItem("petParentEmail")
+      const data={email}
+      const res = await fetch("/api/petParent/accept", {
+        method: "POST",
+        headers: { 
+          //always use this
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+  
+      const check = await res.json();
+      console.log(check)
     }
-    const decline=()=>{
-
+    const decline=async()=>{
+      const email=localStorage.getItem("petParentEmail")
+      const data={email}
+      const res = await fetch("/api/petParent/decline", {
+        method: "POST",
+        headers: { 
+          //always use this
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+  
+      const check = await res.json();
+      console.log(check)
     }
   return (
     <div>
