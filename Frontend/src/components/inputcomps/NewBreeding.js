@@ -13,22 +13,25 @@ import { useNavigate } from "react-router-dom";
 
 const NewBreeding = () => {
   const navigate = useNavigate();
-  const [name, setname] = useState("");
-  const [age, setage] = useState("");
-  const [gender, setgender] = useState("");
+  const [pic, setpic] = useState("");
+  const [edate, setedate] = useState("");
+  const [cert, setcert] = useState("");
+  const [fid, setfid] = useState("");
   const [mid, setmid] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (name === "" || age === "" || gender === "") {
+    if (mid === "" || fid === "" || cert === "" || edate === "") {
       return;
     } else {
-      const vac = "";
-      const parentId = localStorage.getItem("petParentEmail");
-      const data = { name, age, gender, vac, parentId };
+      const breedId = cert;
+      const maleId = mid;
+      const femaleId = fid;
+      const dateOfExpiry = edate;
+      const data = { maleId, femaleId, dateOfExpiry, breedId };
 
-      const res = await fetch("/api/pet/add", {
+      const res = await fetch("/api/puppyFarm/breed", {
         method: "POST",
         headers: {
           //always use this
@@ -42,16 +45,18 @@ const NewBreeding = () => {
       if (check.success) {
         alert("success");
 
-        setname("");
-        setage("");
-        setgender("");
+        setcert("");
+        setedate("");
+        setfid("");
+        setmid("");
         // setTimeout(() => {
         //   navigate("/Login");
         // }, 3000);
       } else {
-        setname("");
-        setage("");
-        setgender("");
+        setcert("");
+        setedate("");
+        setfid("");
+        setmid("");
       }
     }
   };
@@ -78,23 +83,33 @@ const NewBreeding = () => {
           />
         </FormControl>
         <FormControl isRequired>
-          <FormLabel>PetAge</FormLabel>
+          <FormLabel>Female Pet ID</FormLabel>
           <Input
             type="text"
-            placeholder="Enter Your Pet's age"
-            value={age}
-            name="age"
-            onChange={(e) => setage(e.target.value)}
+            placeholder="Enter Female Pet's Id"
+            value={fid}
+            name="fid"
+            onChange={(e) => setfid(e.target.value)}
           />
         </FormControl>
         <FormControl isRequired>
-          <FormLabel>PetGender</FormLabel>
+          <FormLabel>Certificate No.</FormLabel>
           <Input
             type="text"
-            placeholder="Enter Your Pet's gender"
-            value={gender}
-            name="gender"
-            onChange={(e) => setgender(e.target.value)}
+            placeholder="Enter certificate id"
+            value={cert}
+            name="cert"
+            onChange={(e) => setcert(e.target.value)}
+          />
+        </FormControl>
+        <FormControl isRequired>
+          <FormLabel>Certificate Expiry</FormLabel>
+          <Input
+            type="text"
+            placeholder="Enter certificate Expiry"
+            value={edate}
+            name="edate"
+            onChange={(e) => setedate(e.target.value)}
           />
         </FormControl>
 
@@ -104,7 +119,7 @@ const NewBreeding = () => {
           style={{ marginTop: 15 }}
           onClick={handleSubmit}
         >
-          Login
+          Breed
         </Button>
       </VStack>
     </Box>

@@ -10,7 +10,7 @@ import {
   VStack,
 } from "@chakra-ui/react";
 // import { Link } from 'react-router-dom'
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function GovLogin(props) {
   //   useEffect(() => {
@@ -27,7 +27,7 @@ export default function GovLogin(props) {
       setShow(!show);
     }
   };
-
+  const navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -50,7 +50,9 @@ export default function GovLogin(props) {
       localStorage.setItem("vetname", email);
       setemail("");
       setpassword("");
-
+      setTimeout(() => {
+        navigate("/hospitalDashboard");
+      }, 1500);
       alert("Sign In Completed");
     } else if (!check.success) {
       console.log("Login Failed");
@@ -63,7 +65,7 @@ export default function GovLogin(props) {
     <>
       <VStack spacing="5px" color="black">
         <FormControl isRequired>
-          <FormLabel>e-mail</FormLabel>
+          <FormLabel>Clinic Name</FormLabel>
           <Input
             type="email"
             placeholder="Enter Your e-mail"
