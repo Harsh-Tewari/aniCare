@@ -6,6 +6,7 @@ const hospitalLogin = require("../schema/hospitalLogin");
 const petUser = require("../schema/petParent");
 const puppyUser = require("../schema/puppyUser");
 const petParent = require("../schema/petParent");
+const hospitalRating = require("../schema/hospitalRating");
 
 router.post("/register", async (req, res) => {
   const email = req.body.email;
@@ -101,4 +102,24 @@ router.post("/appointRequest", async (req, res) => {
   const data = await petParent.find({ email: email });
   res.status(200).json({ success: true, data: data });
 });
+
+router.post("/rateHospital",async(req,res)=>{
+  const email=req.body.email;
+  let rating =req.body.rating
+  rating=parseInt(rating);
+
+  let count=await hospitalRating.findOne({email:email})
+  if(count!==null){
+    count=parseInt(count);
+    count=count+1;
+  }
+  else{
+    count=1;
+  }
+
+  rating=(rating*count)/count;
+  rating=JSON.stringify(rating)
+  await hospitalRating.findOneAndUpdate({email:email,rating:rating})
+  res.status(200).json({success:true})
+})
 module.exports = router;
