@@ -14,14 +14,14 @@ function App() {
   return (
     <div className="App">
       {/* <PetParentDashboard /> */}
-      {/* <PetParentDashboard />
-      <HospitalList></HospitalList>
+      <PetParentDashboard />
+      {/* <HospitalList></HospitalList>
       <HospitalDashboard></HospitalDashboard> */}
       {/* <PetParentLogin /> */}
       {/* <PuppyFarm /> */}
       {/* <GovSignin /> */}
-      <VetLog />
-      <Homepage />
+      {/* <VetLog />
+      <Homepage /> */}
     </div>
   );
 }
