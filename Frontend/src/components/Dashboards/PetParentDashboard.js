@@ -41,7 +41,7 @@ export default function PetParentDashboard() {
     });
 
     const check = await res.json();
-
+    console.log(check.data)
     setname(check.data.name);
   };
 
