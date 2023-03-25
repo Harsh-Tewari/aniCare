@@ -1,6 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import "./petParentDAshboard.css";
 import { useEffect, useState } from "react";
+import NewPet from "../inputcomps/NewPet";
 export default function PetParentDashboard() {
   const [info, setinfo] = useState([]);
   const [pic, setPic] = useState("");
@@ -196,6 +197,8 @@ export default function PetParentDashboard() {
         <button type="submit" id="addpt" onClick={add}>
           Add Pet +
         </button>
+        <br />
+        <NewPet></NewPet>
         <table>
           <tr>
             <th>Hospital</th>
