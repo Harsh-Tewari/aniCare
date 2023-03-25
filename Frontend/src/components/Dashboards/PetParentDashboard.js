@@ -168,7 +168,7 @@ export default function PetParentDashboard() {
         </ul>
       </nav>
       <div className="centraldivppd">
-        <h1 id="ppdh1">Welcome, Pet Parent</h1>
+        <h1 id="ppdh1">Welcome, {pname}</h1>
         <table>
           <tr>
             <th>Pet Name</th>
