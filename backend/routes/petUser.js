@@ -78,5 +78,26 @@ router.post("/decline",async(req,res)=>{
   await petUser.findOneAndUpdate({email:email,bookingStatus:"declined"})
   res.status(200).json({success:true,message:"appointment declined"})
 })
+
+
+router.post("/fetchParent",async(req,res)=>{
+  const email=req.body.email;
+  const data=await petUser.findOne({email:email})
+  res.status(200).json({success:true,data:data})
+})
+// router.post("/addPet",async(req,res)=>{
+//   const email=req.body.email;
+//   const {gender,breed,age,name}=req.body;
+//   await petAdd.create({
+//     parentId:email,
+//     gender:gender,
+//     breed:breed,
+//     age:age,
+//     name:name
+//   })
+//   res.status(200).json({success:true})
+// })
+
+
 module.exports = router;
 
