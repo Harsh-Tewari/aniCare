@@ -1,150 +1,94 @@
-// import { Link } from "react-router-dom";
-// import "./petParentDAshboard.css";
-// import { useEffect, useState } from "react";
-// export default function PetParentDashboard() {
-//   const [info, setinfo] = useState([]);
-//   const [pic, setPic] = useState("");
-//   const fetchData = async () => {
-//     const email = localStorage.getItem("petParentEmail");
-//     const dat = { email };
-//     const res = await fetch("/api/petParent/fetch", {
-//       method: "POST",
-//       headers: {
-//         //always use this
-//         "content-type": "application/json",
-//       },
-//       body: JSON.stringify(dat),
-//     });
-
-//     const check = await res.json();
-//     console.log(check.data);
-//     setinfo(check.data);
-//   };
-//   useEffect(() => {
-//     fetchData();
-//   });
-
-//   //prescriptipon
-
-//   const updatepresc = async (ln) => {
-//     const email = localStorage.getItem("petParentEmail");
-//     const dat = { email, ln };
-//     const res = await fetch("/api/pet/docupload", {
-//       method: "POST",
-//       headers: {
-//         //always use this
-//         "content-type": "application/json",
-//       },
-//       body: JSON.stringify(dat),
-//     });
-
-//     const check = await res.json();
-//     console.log(check);
-//   };
-
-//   const postDetails = (pics) => {
-//     if (pics === undefined) {
-//       alert("choose a document");
-//       return;
-//     }
-//     console.log(pics);
-//     if (
-//       pics.type === "application/pdf" ||
-//       pics.type === "image/jpeg" ||
-//       pics.type === "image/jpg" ||
-//       pics.type === "image/png"
-//     ) {
-//       const data = new FormData();
-//       data.append("file", pics);
-//       data.append("upload_preset", "aniCare");
-//       data.append("cloud_name", "dhg0kwh9c");
-//       fetch("https://api.cloudinary.com/v1_1/dhg0kwh9c/upload", {
-//         method: "post",
-//         body: data,
-//       })
-//         .then((res) => res.json())
-//         .then((data) => {
-//           setPic(data.url.toString());
-//           console.log(data.url.toString());
-//           updatepresc(pic);
-//         })
-//         .catch((err) => {
-//           console.log(err);
-//         });
-//       console.log("link mil gayi");
-//     } else {
-//       alert("please select valid doc");
-//       return;
-//     }
-//   };
-//   return (
-//     <div id="ppd">
-//       <nav>
-//         <img
-//           src="https://res.cloudinary.com/dhg0kwh9c/image/upload/v1679721782/logo-removebg-preview1_jq1ybw.png"
-//           alt=""
-//           class="navimg"
-//         />
-//         <ul>
-//           <li>
-//             <a href="/" target="_blank">
-//               Vaccination Appointment
-//             </a>
-//           </li>
-//           <li>
-//             <a href="/" target="_blank">
-//               Schedule Check-up
-//             </a>
-//           </li>
-//         </ul>
-//       </nav>
-//       <div className="centraldivppd">
-//         <h1 id="ppdh1">Welcome, Pet Parent</h1>
-//         <table>
-//           <tr>
-//             <th>Pet Name</th>
-//             <th>Age</th>
-//             <th>Gender</th>
-//             <th>Last vaccination</th>
-//             <th>View Prescription</th>
-//             <th>Upload Prescription</th>
-//           </tr>
-//           {info.map((item) => {
-//             return (
-//               <tr>
-//                 <td>{item.name}</td>
-//                 <td>{item.age}</td>
-//                 <td>{item.gender}</td>
-//                 <td>{item.lastVaccination}</td>
-//                 <td>
-//                   <a href={item.prescription}>
-//                     <button className="view">view</button>
-//                   </a>
-//                 </td>
-//                 <td>
-//                   <input
-//                     type="file"
-//                     name="pres"
-//                     onChange={(e) => postDetails(e.target.files[0])}
-//                   />
-//                 </td>
-//               </tr>
-//             );
-//           })}
-//         </table>
-//         <button type="submit" id="addpt">
-//           Add Pet +
-//         </button>
-//       </div>
-//     </div>
-//   );
-// }
-import React from 'react'
+import React from "react";
+import { Link } from "react-router-dom";
+import "./puppyfarm.css";
+import { useEffect, useState } from "react";
 
 const GovtDashboard = () => {
-  return (
-    <div>GovtDashboard</div>
-  )
-}
+  const [info, setinfo] = useState([]);
+  const fetchDataHospital = async () => {
+    const email = localStorage.getItem("hospitalId");
+    const dat = { email };
+    const res = await fetch("/api/govLogin/fetchHospitalData", {
+      method: "POST",
+      headers: {
+        //always use this
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(dat),
+    });
 
-export default GovtDashboard
+    const check = await res.json();
+    console.log(check.data);
+  };
+
+  useEffect(() => {
+    fetchDataHospital();
+  }, []);
+
+  const fetchData = async () => {
+    const email = localStorage.getItem("vetname");
+    const dat = { email };
+    const res = await fetch("/api/govLogin/fetchHospitalData", {
+      method: "POST",
+      headers: {
+        //always use this
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(dat),
+    });
+
+    const check = await res.json();
+    console.log(check.data);
+    setinfo(check.data);
+    console.log(info);
+  };
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  return (
+    <div id="ppd">
+      <nav>
+        <img
+          src="https://res.cloudinary.com/dhg0kwh9c/image/upload/v1679721782/logo-removebg-preview1_jq1ybw.png"
+          alt=""
+          className="navimg"
+        />
+        <ul id="farmul">
+          <li>
+            <a href="/" target="_blank">
+              Logout
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <div className="centraldivppd">
+        <h1 id="pfhd">Government Dashboard</h1>
+        <table>
+          <tr>
+            <th>Puppy-Farm Name</th>
+            <th>Contact No.</th>
+            <th> Address</th>
+            <th>View Report</th>
+          </tr>
+          {info.map((item) => {
+            return (
+              <tr>
+                <td>{item.breed}</td>
+                <td>{item.phone}</td>
+                <td>{item.name}</td>
+                <td>
+                  <Link to={"/"}>
+                    <button id="accept">view</button>{" "}
+                  </Link>
+                </td>
+              </tr>
+            );
+          })}
+        </table>
+      </div>
+    </div>
+  );
+};
+
+export default GovtDashboard;
