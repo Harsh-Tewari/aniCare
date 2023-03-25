@@ -5,6 +5,7 @@ const bcrypt = require("bcrypt");
 const hospitalLogin=require("../schema/hospitalLogin")
 const petUser=require("../schema/petParent");
 const puppyUser = require("../schema/puppyUser");
+const petParent = require("../schema/petParent");
 
 router.post("/register",async(req,res)=>{
     const email=req.body.email; 
@@ -96,5 +97,10 @@ router.post("/fetchHospitalData",async(req,res)=>{
           const data=await petUser.find({hospitalBooked:checkEmail})
           res.status(200).json({success:true,data:data})
   
+})
+router.post("/appointRequest",async(req,res)=>{
+  const email=req.body.email;
+  const data=await petParent.find({email:email})
+  res.status(200).json({success:true,hospitalBooked:data.hospitalBooked,bookingStatus:data.bookingStatus})
 })
 module.exports=router
