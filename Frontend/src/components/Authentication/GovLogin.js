@@ -17,7 +17,7 @@ export default function GovLogin(props) {
   //     props.stopLoading();
   //   }, [])
 
-    const navigate = useNavigate();
+  const navigate = useNavigate();
   const [email, setemail] = useState("");
   const [password, setpassword] = useState("");
   const [show, setShow] = useState(false);
@@ -47,11 +47,11 @@ export default function GovLogin(props) {
     const check = await res.json();
 
     if (check.success) {
-      localStorage.setItem("email", email);
+      localStorage.setItem("gov_email", email);
       setemail("");
       setpassword("");
       setTimeout(() => {
-        navigate("/govDashboard")
+        navigate("/govDashboard");
       }, 1500);
       alert("Sign In Completed");
     } else if (!check.success) {

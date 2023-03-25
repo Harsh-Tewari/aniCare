@@ -5,6 +5,7 @@ export default function PetParentDashboard() {
   const [info, setinfo] = useState([]);
   const [pic, setPic] = useState("");
   const [name, setname] = useState("");
+  const [doct, setdoct] = useState([]);
   const fetchData = async () => {
     const email = localStorage.getItem("petParentEmail");
     const dat = { email };
@@ -21,7 +22,7 @@ export default function PetParentDashboard() {
     console.log(check.data);
     setinfo(check.data);
   };
-  const fetchParent=async()=>{
+  const fetchParent = async () => {
     const email = localStorage.getItem("petParentEmail");
     const dat = { email };
     const res = await fetch("/api/petParent/fetchParent", {
@@ -34,16 +35,34 @@ export default function PetParentDashboard() {
     });
 
     const check = await res.json();
-    
+
     setname(check.data.name);
-  }
+  };
+
+  const fetchAppointments = async () => {
+    const email = localStorage.getItem("petParentEmail");
+    const dat = { email };
+    const res = await fetch("/api/govLogin/appointRequest", {
+      method: "POST",
+      headers: {
+        //always use this
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(dat),
+    });
+
+    const check = await res.json();
+    console.log(check.data);
+    setdoct(check.data);
+  };
   useEffect(() => {
     fetchData();
     fetchParent();
+    fetchAppointments();
   }, []);
 
-    const add=async()=>{
-      const email = localStorage.getItem("petParentEmail");
+  const add = async () => {
+    const email = localStorage.getItem("petParentEmail");
     const dat = { email };
     const res = await fetch("/api/pet/add", {
       method: "POST",
@@ -55,9 +74,7 @@ export default function PetParentDashboard() {
     });
 
     const check = await res.json();
-    
- 
-    }
+  };
   //prescriptipon
 
   const updatepresc = async (ln) => {
@@ -130,6 +147,11 @@ export default function PetParentDashboard() {
               Schedule Check-up
             </a>
           </li>
+          <li>
+            <a href="/" target="_blank">
+              Logout
+            </a>
+          </li>
         </ul>
       </nav>
       <div className="centraldivppd">
@@ -169,6 +191,21 @@ export default function PetParentDashboard() {
         <button type="submit" id="addpt" onClick={add}>
           Add Pet +
         </button>
+        <table>
+          <tr>
+            <th>Hospital</th>
+            <th>Appointment Status</th>
+          </tr>
+
+          {doct.map((item) => {
+            return (
+              <tr>
+                <td>{item.hospitalBooked}</td>
+                <td>{item.bookingStatus}</td>
+              </tr>
+            );
+          })}
+        </table>
       </div>
     </div>
   );
