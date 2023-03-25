@@ -11,10 +11,10 @@ router.post("/add", async (req, res) => {
   }
   let petExists = await Pet.findOne({ name, gender, parentId });
   if (petExists) {
-    res.status(400);
-    throw new Error("Pet Already exists");
+    res.status(400).json({ success: false, message: "pet already exist" });
+    return;
   }
-  let prescription = [""];
+  let prescription = "";
   let pet = await Pet.create({
     name,
     age,
@@ -24,7 +24,7 @@ router.post("/add", async (req, res) => {
     parentId,
   });
   if (pet) {
-    res.status(201).send("Pet Added Successfully");
+    res.status(200).json({ success: true });
   } else {
     res.status(400);
     throw new Error("Unable to create user");

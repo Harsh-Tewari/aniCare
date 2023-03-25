@@ -3,12 +3,21 @@ import { Link } from "react-router-dom";
 import "./puppyfarm.css";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import NewBreeding from "../inputcomps/NewBreeding";
 const PuppyFarmDashboard = () => {
-  const navigate=useNavigate();
+  const navigate = useNavigate();
   const [info, setinfo] = useState([]);
   const [info1, setinfo1] = useState([]);
+  const [show, setShow] = useState(false);
+
+  const handleClick = (e) => {
+    console.log(show);
+    if (e.target.name === "showpass") {
+      setShow(!show);
+    }
+  };
   const fetchData = async () => {
-    const email = localStorage.getItem("email");
+    const email = localStorage.getItem("farm_email");
     const dat = { email };
     const res = await fetch("/api/puppyFarm/fetch", {
       method: "POST",
@@ -18,7 +27,7 @@ const PuppyFarmDashboard = () => {
       },
       body: JSON.stringify(dat),
     });
-  
+
     const check = await res.json();
     console.log(check.data);
     setinfo(check.data);
@@ -27,10 +36,10 @@ const PuppyFarmDashboard = () => {
   useEffect(() => {
     fetchData();
   }, []);
-  const Logout=()=>{
-    localStorage.removeItem("farm_email")
-    navigate("/")
-  }
+  const Logout = () => {
+    localStorage.removeItem("farm_email");
+    navigate("/");
+  };
   return (
     <div id="ppd">
       <nav>
@@ -41,9 +50,7 @@ const PuppyFarmDashboard = () => {
         />
         <ul id="farmul">
           <li>
-          <button onClick={Logout}>
-              Logout
-            </button>
+            <button onClick={Logout}>Logout</button>
           </li>
         </ul>
       </nav>
@@ -92,6 +99,11 @@ const PuppyFarmDashboard = () => {
             );
           })}
         </table>
+        <button name="showpass" id="addpt" onClick={handleClick}>
+          Add Breeding Details +
+        </button>
+        <br />
+        {show ? <NewBreeding /> : <br />}
       </div>
     </div>
   );

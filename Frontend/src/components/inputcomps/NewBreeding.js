@@ -11,12 +11,12 @@ import {
 // import { Link } from 'react-router-dom'
 import { useNavigate } from "react-router-dom";
 
-const NewPet = () => {
+const NewBreeding = () => {
   const navigate = useNavigate();
   const [name, setname] = useState("");
   const [age, setage] = useState("");
   const [gender, setgender] = useState("");
-  const [breed, setbreed] = useState("");
+  const [mid, setmid] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -68,13 +68,13 @@ const NewPet = () => {
     >
       <VStack spacing="5px" color="black">
         <FormControl isRequired>
-          <FormLabel>PetName</FormLabel>
+          <FormLabel>Male Pet ID</FormLabel>
           <Input
             type="text"
-            placeholder="Enter Your Pet's name"
-            value={name}
-            name="name"
-            onChange={(e) => setname(e.target.value)}
+            placeholder="Enter Male Pet's Id"
+            value={mid}
+            name="mid"
+            onChange={(e) => setmid(e.target.value)}
           />
         </FormControl>
         <FormControl isRequired>
@@ -104,11 +104,11 @@ const NewPet = () => {
           style={{ marginTop: 15 }}
           onClick={handleSubmit}
         >
-          Add
+          Login
         </Button>
       </VStack>
     </Box>
   );
 };
 
-export default NewPet;
+export default NewBreeding;
