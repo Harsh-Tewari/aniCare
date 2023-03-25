@@ -26,10 +26,11 @@ const NewBreeding = () => {
       return;
     } else {
       const breedId = cert;
+      const email = localStorage.getItem("farm_email");
       const maleId = mid;
       const femaleId = fid;
       const dateOfExpiry = edate;
-      const data = { maleId, femaleId, dateOfExpiry, breedId };
+      const data = { email, maleId, femaleId, dateOfExpiry, breedId };
 
       const res = await fetch("/api/puppyFarm/breed", {
         method: "POST",

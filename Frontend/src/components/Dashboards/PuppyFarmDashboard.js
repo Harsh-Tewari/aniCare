@@ -33,8 +33,26 @@ const PuppyFarmDashboard = () => {
     setinfo(check.data);
     console.log(info);
   };
+
+  const fetchData1 = async () => {
+    // const email = localStorage.getItem("farm_email");
+    const res = await fetch("/api/puppyFarm/fetchBreedingDetails", {
+      method: "POST",
+      headers: {
+        //always use this
+        "content-type": "application/json",
+      },
+    });
+
+    const check = await res.json();
+    console.log(check);
+    setinfo1(check);
+    console.log(info);
+  };
+
   useEffect(() => {
     fetchData();
+    fetchData1();
   }, []);
   const Logout = () => {
     localStorage.removeItem("farm_email");
