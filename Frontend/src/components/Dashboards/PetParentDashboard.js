@@ -107,7 +107,27 @@ export default function PetParentDashboard() {
     const check = await res.json();
     console.log(check);
   };
+const rate=async(event ,hospitalName)=>{
+  // let a=document.getElementById("rating")
+  const element=event.currentTarget;
+        var parent =element.parentNode;
+        var hospitalBooked=parent.querySelector("input");
+        const rating=hospitalBooked.value
+        
 
+  const dat={hospitalName,rating}
+  const res = await fetch("/api/govLogin/rateHospital", {
+    method: "POST",
+    headers: {
+      //always use this
+      "content-type": "application/json",
+    },
+    body: JSON.stringify(dat),
+  });
+  const check=await res.json(); 
+  console.log(check)
+
+}
   const postDetails = (pics) => {
     if (pics === undefined) {
       alert("choose a document");
@@ -217,6 +237,8 @@ export default function PetParentDashboard() {
               <tr>
                 <td>{item.hospitalBooked}</td>
                 <td>{item.bookingStatus}</td>
+                <input type="text" id="rating"  placeholder="rating between 1-5"/>
+                <button style={{backgroundColor:"red"}} onClick={(event)=>{rate(event,item.hospitalBooked)}}>Rate</button>
               </tr>
             );
           })}
