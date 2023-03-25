@@ -1,11 +1,14 @@
-import './App.css';
-import Register from './components/Register';
-import Login from './components/Login';
+import "./App.css";
+import Register from "./components/Authentication/Register";
+import Login from "./components/Authentication/Login";
+import PetParentLogin from "./components/PetParentLogin/PetParentLogin";
+import PetParentDashboard from "./components/Dashboards/PetParentDashboard";
+
 function App() {
   return (
     <div className="App">
-      <Register></Register>
-      <Login></Login>
+      <PetParentDashboard />
+      {/* <PetParentLogin /> */}
     </div>
   );
 }

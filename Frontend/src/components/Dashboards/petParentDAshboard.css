@@ -1,0 +1,14 @@
+#ppd {
+  background-color: #f2fff7;
+  min-height: 100vh;
+}
+.centraldivppd {
+  min-height: 70vh;
+  width: 80vw;
+  /* background-color: black; */
+  margin: auto;
+  margin-top: 10vh;
+}
+#ppdh1 {
+  font-size: xx-large;
+}
