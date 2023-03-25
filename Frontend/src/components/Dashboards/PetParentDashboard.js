@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./petParentDAshboard.css";
 import { useEffect, useState } from "react";
 export default function PetParentDashboard() {
@@ -6,6 +6,7 @@ export default function PetParentDashboard() {
   const [pic, setPic] = useState("");
   const [name, setname] = useState("");
   const [doct, setdoct] = useState([]);
+  const navigate=useNavigate();
   const fetchData = async () => {
     const email = localStorage.getItem("petParentEmail");
     const dat = { email };
@@ -22,6 +23,10 @@ export default function PetParentDashboard() {
     console.log(check.data);
     setinfo(check.data);
   };
+  const Logout=()=>{
+    localStorage.removeItem("farm_email")
+    navigate("/")
+  }
   const fetchParent = async () => {
     const email = localStorage.getItem("petParentEmail");
     const dat = { email };
@@ -148,9 +153,9 @@ export default function PetParentDashboard() {
             </a>
           </li>
           <li>
-            <a href="/" target="_blank">
+          <button onClick={Logout}>
               Logout
-            </a>
+            </button>
           </li>
         </ul>
       </nav>

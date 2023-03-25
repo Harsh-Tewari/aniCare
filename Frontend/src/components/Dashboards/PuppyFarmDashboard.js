@@ -2,8 +2,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./puppyfarm.css";
 import { useEffect, useState } from "react";
-
+import { useNavigate } from "react-router-dom";
 const PuppyFarmDashboard = () => {
+  const navigate=useNavigate();
   const [info, setinfo] = useState([]);
   const [info1, setinfo1] = useState([]);
   const fetchData = async () => {
@@ -17,10 +18,7 @@ const PuppyFarmDashboard = () => {
       },
       body: JSON.stringify(dat),
     });
-    const Logout=()=>{
-      localStorage.removeItem("farm_email")
-      navigate("/")
-    }
+  
     const check = await res.json();
     console.log(check.data);
     setinfo(check.data);
@@ -29,7 +27,10 @@ const PuppyFarmDashboard = () => {
   useEffect(() => {
     fetchData();
   }, []);
-
+  const Logout=()=>{
+    localStorage.removeItem("farm_email")
+    navigate("/")
+  }
   return (
     <div id="ppd">
       <nav>

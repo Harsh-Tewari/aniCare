@@ -1,10 +1,11 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./puppyfarm.css";
 import { useEffect, useState } from "react";
 
 const HospitalDashboard = () => {
   const [info, setinfo] = useState([]);
+  const navigate=useNavigate();
   const fetchDataHospital = async () => {
     const email = localStorage.getItem("hospitalId");
     const dat = { email };
