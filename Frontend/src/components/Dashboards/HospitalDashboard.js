@@ -20,7 +20,10 @@ const HospitalDashboard = () => {
     const check = await res.json();
     console.log(check.data);
   };
-
+  const Logout=()=>{
+    localStorage.removeItem("vetname")
+    navigate("/")
+  }
   useEffect(() => {
     fetchDataHospital();
   }, []);
@@ -86,9 +89,9 @@ const HospitalDashboard = () => {
         />
         <ul id="farmul">
           <li>
-            <a href="/" target="_blank">
+          <button onClick={Logout}>
               Logout
-            </a>
+            </button>
           </li>
         </ul>
       </nav>

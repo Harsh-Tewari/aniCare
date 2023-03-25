@@ -17,7 +17,10 @@ const PuppyFarmDashboard = () => {
       },
       body: JSON.stringify(dat),
     });
-
+    const Logout=()=>{
+      localStorage.removeItem("farm_email")
+      navigate("/")
+    }
     const check = await res.json();
     console.log(check.data);
     setinfo(check.data);
@@ -37,9 +40,9 @@ const PuppyFarmDashboard = () => {
         />
         <ul id="farmul">
           <li>
-            <a href="/" target="_blank">
+          <button onClick={Logout}>
               Logout
-            </a>
+            </button>
           </li>
         </ul>
       </nav>
