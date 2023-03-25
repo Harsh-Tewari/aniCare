@@ -10,14 +10,14 @@ import {
   VStack,
 } from "@chakra-ui/react";
 // import { Link } from 'react-router-dom'
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function Login(props) {
   //   useEffect(() => {
   //     props.stopLoading();
   //   }, [])
 
-  //   const navigate = useNavigate();
+    const navigate = useNavigate();
   const [email, setemail] = useState("");
   const [password, setpassword] = useState("");
   const [show, setShow] = useState(false);
@@ -48,9 +48,13 @@ export default function Login(props) {
 
     if (check.success) {
       localStorage.setItem("email", email);
+
       setemail("");
       setpassword("");
 
+      setTimeout(() => {
+        navigate("/petParentDashboard")
+      }, 1500);
       alert("Sign In Completed");
     } else if (!check.success) {
       console.log("Login Failed");

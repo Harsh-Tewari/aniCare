@@ -1,6 +1,6 @@
 import React from "react";
 import "./HomePage.css";
-
+import {Link} from "react-router-dom"
 const Homepage = () => {
   return (
     <div>
@@ -13,16 +13,16 @@ const Homepage = () => {
         </div>
         <ul>
           <li className="item">
-            <a href="#">Parent Login</a>
+            <Link to={"/petParentLogin"}>Parent Login</Link>
           </li>
           <li className="item">
-            <a href="#">Puppy Farm Login</a>
+            <Link to={"/puppyFarmLogin"}>Puppy Farm Login</Link>
           </li>
           <li className="item">
-            <a href="#">Govt Login</a>
+            <Link to={"/govLogin"}>Govt Login</Link>
           </li>
           <li className="item">
-            <a href="#">Vet Login</a>
+            <Link to={"/vetLogin"}>Vet Login</Link>
           </li>
         </ul>
       </nav>
