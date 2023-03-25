@@ -10,6 +10,7 @@ app.use(bodyParser.json());
 
 app.use("/api/petParent", require("./routes/petUser.js"));
 app.use("/api/pet", require("./routes/petAdd.js"));
+app.use("/api/puppyFarm", require("./routes/puppyUser.js"));
 app.get("/", (req, res) => {
   res.send("h");
 });
