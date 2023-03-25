@@ -1,7 +1,7 @@
 import {
   Box,
   Container,
-  Image,
+  TEXT,
   Tabs,
   Tab,
   TabList,
@@ -10,9 +10,9 @@ import {
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import Login from "../Authentication/Login.js";
-import Signup from "../Authentication/Register.js";
-import "./petParentLogin.css";
+import Login from "../Authentication/FarmLogin.js";
+import Signup from "../Authentication/FarmRegister.js";
+import "./puppyfarm.css";
 
 const PetParentLogin = () => {
   return (
@@ -24,8 +24,9 @@ const PetParentLogin = () => {
             alt=""
           />
         </Box>
+
         <Box p={4} w="100%" bg="white">
-          <h1 id="farmhead"> PET PARENT</h1>
+          <h1 id="farmhead"> PUPPY FARM</h1>
           <Tabs isFitted variant="soft-rounded">
             <TabList>
               <Tab _hover={{ bg: "rgb(240, 254, 240)" }}>Login</Tab>
