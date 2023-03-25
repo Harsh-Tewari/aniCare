@@ -47,7 +47,7 @@ export default function GovLogin(props) {
     const check = await res.json();
 
     if (check.success) {
-      localStorage.setItem("email", email);
+      localStorage.setItem("vetname", email);
       setemail("");
       setpassword("");
 
