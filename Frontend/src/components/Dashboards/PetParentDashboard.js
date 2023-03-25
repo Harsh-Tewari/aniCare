@@ -147,6 +147,11 @@ export default function PetParentDashboard() {
               Schedule Check-up
             </a>
           </li>
+          <li>
+            <a href="/" target="_blank">
+              Logout
+            </a>
+          </li>
         </ul>
       </nav>
       <div className="centraldivppd">
