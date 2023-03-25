@@ -1,36 +1,31 @@
 const express = require("express");
 const router = express.Router();
-const petUser = require("../schema/petParent");
+const govLogin = require("../schema/govLogin");
 const bcrypt = require("bcrypt");
 
 
-router.post("/register", async (req, res) => {
-    const email=req.body.email;
-    const name=req.body.name;
-    const address=req.body.address;
-    const pincode=req.body.address;
-    const phone =req.body.phone;
+router.post("/register",async(req,res)=>{
+    const email=req.body.email; 
+
     const password= await bcrypt.hash(req.body.password, 10);
-    const check=await petUser.findOne({email:email})
+    const check=await govLogin.findOne({email:email})
     if(check){
         return res.status(200) .json({ success: false, error: "username already exist" });
     }
     else{
-        const user =await petUser.create({
-            name:name,
+        const user =await govLogin.create({
+            
             email:email,
-            address:address,
-            pincode:pincode,
-            phone:phone,
+        
             password:password
     })
     return res.status(200).json({success:true,})
 }
-});
-router.post("/signIn", async (req, res) => {
+})
+router.post("/login",async(req,res)=>{
     const checkEmail = req.body.email;
     // email=checkEmail;
-    const person = await petUser.findOne({ email: checkEmail });
+    const person = await govLogin.findOne({ email: checkEmail });
   
     if (person) {
       const checkPassword = await bcrypt.compare(
@@ -47,14 +42,8 @@ router.post("/signIn", async (req, res) => {
     } else {
       res.status(200).json({ success: false, error: "User does not exist" });
     }
-});
-router.post("/fetch",async(req,res)=>{
-  const email=req.body.email;
-  const parent=await petUser.findOne({email:email})
-  if(!parent){res.status(400).json({success:false,message:"pet parent doesnot exist"})}
-  else{
-    res.status(200).json({data:parent})
-  }
 })
-module.exports = router;
-
+// router.post("/fetch",async(req,res)=>{
+//   const data=
+// })
+module.exports=router
