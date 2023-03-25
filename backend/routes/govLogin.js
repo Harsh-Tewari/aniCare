@@ -3,7 +3,8 @@ const router = express.Router();
 const govLogin = require("../schema/govLogin");
 const bcrypt = require("bcrypt");
 const hospitalLogin=require("../schema/hospitalLogin")
-const petUser=require("../schema/petParent")
+const petUser=require("../schema/petParent");
+const puppyUser = require("../schema/puppyUser");
 
 router.post("/register",async(req,res)=>{
     const email=req.body.email; 
@@ -63,7 +64,10 @@ router.post("/login",async(req,res)=>{
     }
 })
 
-
+router.post("/govFetch",async(req,res)=>{
+  let data=await puppyUser.find()
+  res.status(200).json({success:true,data:data})
+})
 router.post("/HospitalLogin",async(req,res)=>{
   const checkEmail = req.body.email;
   // email=checkEmail;
