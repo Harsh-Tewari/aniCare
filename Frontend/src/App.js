@@ -8,18 +8,20 @@ import GovSignin from "./components/GovLogin/GovSignin";
 import VetLog from "./components/VetLog.js/VetLog";
 import HospitalList from "./components/HospitalList";
 import HospitalDashboard from "./components/HospitalDashboard";
+import Homepage from "./components/Home/Homepage";
 
 function App() {
   return (
     <div className="App">
       {/* <PetParentDashboard /> */}
-      <PetParentDashboard />
+      {/* <PetParentDashboard />
       <HospitalList></HospitalList>
-      <HospitalDashboard></HospitalDashboard>
+      <HospitalDashboard></HospitalDashboard> */}
       {/* <PetParentLogin /> */}
       {/* <PuppyFarm /> */}
       {/* <GovSignin /> */}
-      <VetLog />
+      {/* <VetLog /> */}
+      <Homepage />
     </div>
   );
 }
