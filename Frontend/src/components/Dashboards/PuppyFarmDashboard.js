@@ -35,18 +35,20 @@ const PuppyFarmDashboard = () => {
   };
 
   const fetchData1 = async () => {
-    // const email = localStorage.getItem("farm_email");
+    const email = localStorage.getItem("farm_email");
+    const dat = { email };
     const res = await fetch("/api/puppyFarm/fetchBreedingDetails", {
       method: "POST",
       headers: {
         //always use this
         "content-type": "application/json",
       },
+      body: JSON.stringify(dat),
     });
 
     const check = await res.json();
     console.log(check);
-    setinfo1(check);
+    setinfo1(check.data);
     console.log(info);
   };
 
@@ -106,13 +108,16 @@ const PuppyFarmDashboard = () => {
             <th>Certificate Expiry Date</th>
             <th>View Certificate</th>
           </tr>
-          {info.map((item) => {
+          {info1.map((item) => {
             return (
               <tr>
-                <td>{item.breed}</td>
-                <td>{item.gender}</td>
-                <td>{item.isBreeding ? "yes" : "no"}</td>
-                <td>{item.id}</td>
+                <td>{item.maleId}</td>
+                <td>{item.femaleId}</td>
+                <td>{item.breedId}</td>
+                <td>{item.dateOfexpiry}</td>
+                <td>
+                  <button className="view">view</button>
+                </td>
               </tr>
             );
           })}

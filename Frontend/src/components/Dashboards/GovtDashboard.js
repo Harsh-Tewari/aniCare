@@ -4,7 +4,7 @@ import "./puppyfarm.css";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 const GovtDashboard = () => {
-  const navigate=useNavigate();
+  const navigate = useNavigate();
   const [info, setinfo] = useState([]);
   const fetchDataHospital = async () => {
     const email = localStorage.getItem("hospitalId");
@@ -25,10 +25,10 @@ const GovtDashboard = () => {
   useEffect(() => {
     fetchDataHospital();
   }, []);
-const Logout=()=>{
-  localStorage.removeItem("gov_email")
-  navigate("/")
-}
+  const Logout = () => {
+    localStorage.removeItem("gov_email");
+    navigate("/");
+  };
   const fetchData = async () => {
     const email = localStorage.getItem("vetname");
     const dat = { email };
@@ -60,9 +60,7 @@ const Logout=()=>{
         />
         <ul id="farmul">
           <li>
-            <button onClick={Logout}>
-              Logout
-            </button>
+            <button onClick={Logout}>Logout</button>
           </li>
         </ul>
       </nav>
@@ -78,9 +76,9 @@ const Logout=()=>{
           {info.map((item) => {
             return (
               <tr>
-                <td>{item.breed}</td>
-                <td>{item.phone}</td>
                 <td>{item.name}</td>
+                <td>{item.phone}</td>
+                <td>{item.address}</td>
                 <td>
                   <Link to={"/"}>
                     <button id="accept">view</button>{" "}
