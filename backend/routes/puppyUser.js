@@ -116,5 +116,8 @@ const breedId=req.body.breedId;
       res.status(200).json({success:true,message:"breeding done and count updated"})
   }
 })
-
+router.post("/fetchBreedingDetails",async(req,res)=>{
+  const data=await puppyFarmAdd.find({breedId:"C123"})
+  res.status(200).json({success:true,data:data})
+})
 module.exports = router;
