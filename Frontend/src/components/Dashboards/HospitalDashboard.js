@@ -1,10 +1,11 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./puppyfarm.css";
 import { useEffect, useState } from "react";
 
 const HospitalDashboard = () => {
   const [info, setinfo] = useState([]);
+  const navigate=useNavigate();
   const fetchDataHospital = async () => {
     const email = localStorage.getItem("hospitalId");
     const dat = { email };
@@ -20,7 +21,10 @@ const HospitalDashboard = () => {
     const check = await res.json();
     console.log(check.data);
   };
-
+  const Logout=()=>{
+    localStorage.removeItem("vetname")
+    navigate("/")
+  }
   useEffect(() => {
     fetchDataHospital();
   }, []);
@@ -86,9 +90,9 @@ const HospitalDashboard = () => {
         />
         <ul id="farmul">
           <li>
-            <a href="/" target="_blank">
+          <button onClick={Logout}>
               Logout
-            </a>
+            </button>
           </li>
         </ul>
       </nav>

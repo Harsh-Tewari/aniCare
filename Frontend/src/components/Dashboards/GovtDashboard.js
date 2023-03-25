@@ -2,8 +2,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./puppyfarm.css";
 import { useEffect, useState } from "react";
-
+import { useNavigate } from "react-router-dom";
 const GovtDashboard = () => {
+  const navigate=useNavigate();
   const [info, setinfo] = useState([]);
   const fetchDataHospital = async () => {
     const email = localStorage.getItem("hospitalId");
@@ -24,7 +25,10 @@ const GovtDashboard = () => {
   useEffect(() => {
     fetchDataHospital();
   }, []);
-
+const Logout=()=>{
+  localStorage.removeItem("gov_email")
+  navigate("/")
+}
   const fetchData = async () => {
     const email = localStorage.getItem("vetname");
     const dat = { email };
@@ -56,9 +60,9 @@ const GovtDashboard = () => {
         />
         <ul id="farmul">
           <li>
-            <a href="/" target="_blank">
+            <button onClick={Logout}>
               Logout
-            </a>
+            </button>
           </li>
         </ul>
       </nav>
