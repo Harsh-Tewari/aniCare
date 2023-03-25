@@ -12,11 +12,9 @@ const petSchema = new mongoose.Schema({
     type: String,
     require: true,
   },
-  prescription: [
-    {
-      type: String,
-    },
-  ],
+  prescription: {
+    type: String,
+  },
   lastVaccination: {
     type: String,
   },

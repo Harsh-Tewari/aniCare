@@ -12,3 +12,56 @@
 #ppdh1 {
   font-size: xx-large;
 }
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 0 auto;
+  background-color: white;
+  border: 0.5px solid gray;
+  margin-top: 10vh;
+}
+
+th,
+td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+.view {
+  padding: 2px 2rem;
+  background-color: black;
+  color: white;
+  border-radius: 5px;
+}
+nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 6px 9px;
+  padding-top: 1rem;
+}
+.navimg {
+  width: 10rem;
+  height: 3rem;
+}
+ul {
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 30vw;
+  font-size: larger;
+}
+#addpt {
+  margin-top: 2rem;
+  width: 10rem;
+  background-color: green;
+  padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+  border-radius: 10px;
+  color: white;
+  font-size: larger;
+}

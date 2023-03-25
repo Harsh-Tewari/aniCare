@@ -45,4 +45,17 @@ router.get("/vaccine", async (req, res) => {
   }
 });
 
+router.post("/docupload", async (req, res) => {
+  let { parentId, ln } = req.body;
+  let dog = await Pet.findOneAndUpdate({ parentId, prescription: ln });
+  if (dog) {
+    console.log(dog);
+    res.status(200).json({
+      success: true,
+    });
+  } else {
+    res.status(400).send("Dog Not Found");
+  }
+});
+
 module.exports = router;
