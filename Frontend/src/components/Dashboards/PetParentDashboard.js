@@ -5,7 +5,7 @@ export default function PetParentDashboard() {
   const [info, setinfo] = useState([]);
   const [pic, setPic] = useState("");
   const [name, setname] = useState("");
-  const [doct, setdoct] = useState("");
+  const [doct, setdoct] = useState([]);
   const fetchData = async () => {
     const email = localStorage.getItem("petParentEmail");
     const dat = { email };
@@ -52,8 +52,8 @@ export default function PetParentDashboard() {
     });
 
     const check = await res.json();
-
-    setdoct(check);
+    console.log(check.data);
+    setdoct(check.data);
   };
   useEffect(() => {
     fetchData();
@@ -191,6 +191,7 @@ export default function PetParentDashboard() {
             <th>Hospital</th>
             <th>Appointment Status</th>
           </tr>
+
           {doct.map((item) => {
             return (
               <tr>
