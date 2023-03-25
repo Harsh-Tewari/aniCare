@@ -22,7 +22,7 @@ export default function PetParentDashboard() {
   };
   useEffect(() => {
     fetchData();
-  });
+  }, []);
 
   //prescriptipon
 
