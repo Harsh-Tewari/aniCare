@@ -13,6 +13,7 @@ import PuppyFarmDashboard from "./components/Dashboards/PuppyFarmDashboard";
 import GovDashboard from "./components/Dashboards/GovtDashboard";
 
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Report from "./components/Dashboards/Report";
 function App() {
   return (
     <div className="App">
@@ -49,6 +50,7 @@ function App() {
             path="/hospitalList"
             element={<HospitalList></HospitalList>}
           ></Route>
+          <Route path="/Report" element={<Report></Report>}></Route>
           {/* <PetParentLogin /> */}
         </Routes>
       </BrowserRouter>

@@ -80,7 +80,7 @@ const GovtDashboard = () => {
                 <td>{item.phone}</td>
                 <td>{item.address}</td>
                 <td>
-                  <Link to={"/"}>
+                  <Link to={"/Report"}>
                     <button id="accept">view</button>{" "}
                   </Link>
                 </td>

@@ -136,7 +136,6 @@ const HospitalList = () => {
     console.log(check);
     if (check.success) {
       alert("Appointment Booked Successfully!");
-      navigate("/petParentDashboard");
     }
   };
 
