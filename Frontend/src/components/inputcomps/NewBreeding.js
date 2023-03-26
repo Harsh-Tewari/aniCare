@@ -97,6 +97,7 @@ const NewBreeding = () => {
           setPic(ln);
           localStorage.setItem("pic_link", ln);
           console.log(pic);
+          alert("Uploaded!")
         })
         .catch((err) => {
           console.log(err);
