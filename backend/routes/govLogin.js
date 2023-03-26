@@ -104,21 +104,15 @@ router.post("/appointRequest", async (req, res) => {
 });
 
 router.post("/rateHospital", async (req, res) => {
-  const email = req.body.email;
-  let rating = req.body.rating;
-  rating = parseInt(rating);
+  const name = req.body.hospitalName;
+  const rating = req.body.rating;
 
-  let count = await hospitalRating.findOne({ email: email });
-  if (count !== null) {
-    count = parseInt(count);
-    count = count + 1;
-  } else {
-    count = 1;
-  }
+console.log(name)
+// const n=
+const data=await hospitalRating.findOne({name:name})
+await hospitalRating.findOneAndUpdate({name,rating})
 
-  rating = (rating * count) / count;
-  rating = JSON.stringify(rating);
-  await hospitalRating.findOneAndUpdate({ email: email, rating: rating });
+console.log(data)
   res.status(200).json({ success: true });
 });
 

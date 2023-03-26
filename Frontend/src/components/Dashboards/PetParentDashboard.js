@@ -113,17 +113,17 @@ export default function PetParentDashboard() {
   };
   const rate = async (event, hospitalName) => {
     // let a=document.getElementById("rating")
+    console.log(hospitalName)
     const element = event.currentTarget;
     var parent = element.parentNode;
     var hospitalBooked = parent.querySelector("input");
     const rating = hospitalBooked.value;
-
     const dat = { hospitalName, rating };
     const res = await fetch("/api/govLogin/rateHospital", {
       method: "POST",
       headers: {
         //always use this
-        "content-type": "application/json",
+        "content-type": "application/json", 
       },
       body: JSON.stringify(dat),
     });
