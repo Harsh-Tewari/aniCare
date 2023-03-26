@@ -57,7 +57,7 @@ router.post("/add", async (req, res) => {
   const id = Date.now();
   const breed = req.body.breed;
   const gender = req.body.gender;
-  const certificate = req.body.certificate;
+  const certificate = "";
   const isBreeding = 0;
   const count = 0;
   const checkEmail = await puppyUser.findOne({ email: email });
@@ -91,7 +91,7 @@ router.post("/fetch", async (req, res) => {
 router.post("/breed", async (req, res) => {
   const email = req.body.email;
   const user = await puppyUser.findOne({ email: email });
-  // console.log(user)
+  const certificate = req.body.certificate;
   const maleId = req.body.maleId;
   const femaleId = req.body.femaleId;
   const dateOfExpiry = req.body.dateOfExpiry;
@@ -117,6 +117,7 @@ router.post("/breed", async (req, res) => {
       isBreeding: true,
       count: countMale + 1,
       breedId: breedId,
+      certificate: certificate,
     });
     await puppyFarmAdd.findOneAndUpdate({
       id: femaleId,
@@ -130,6 +131,7 @@ router.post("/breed", async (req, res) => {
       dateOfexpiry: dateOfExpiry,
       email: email,
       breedId: breedId,
+      certificate: certificate,
     });
     res
       .status(200)

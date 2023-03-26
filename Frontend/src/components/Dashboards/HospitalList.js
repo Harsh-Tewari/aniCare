@@ -1,9 +1,11 @@
 import React from "react";
 import "./Hospitallist.css";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router";
 
 const HospitalList = () => {
   const { rate, setRate } = useState([]);
+  const navigate = useNavigate();
   const hospital = [
     {
       name: "Renee Vet Hospital",
@@ -134,6 +136,10 @@ const HospitalList = () => {
 
     const check = await res.json();
     console.log(check);
+    if (check.success) {
+      alert("Appointment Booked Successfully!");
+      navigate("/petParentDashboard");
+    }
   };
 
   const fetchrate = async () => {
