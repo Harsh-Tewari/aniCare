@@ -1,0 +1,29 @@
+#total {
+  background-color: #f2fff7;
+}
+#back {
+  background-color: #f2fff7;
+  min-height: 100vh;
+  margin: auto;
+  width: 60vw;
+}
+.cont {
+  margin: auto;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+#ch {
+  text-align: center;
+  font-size: xx-large;
+  font-weight: 700;
+  text-decoration: underline;
+}
+.det {
+  margin-left: 1rem;
+}
+#realjuice {
+  text-align: center;
+  font-size: x-large;
+  font-weight: 600;
+  text-decoration: underline;
+}
