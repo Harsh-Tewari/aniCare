@@ -1,9 +1,10 @@
 import React from "react";
 import "./Hospitallist.css";
-import { useState, useEffect } from "react";
-
+import { useEffect } from "react";
+const { useState} = React
 const HospitalList = () => {
-  const { rate, setRate } = useState([]);
+  
+  const [arr, setarr] = useState([]);
   const hospital = [
     {
       name: "Renee Vet Hospital",
@@ -146,17 +147,9 @@ const HospitalList = () => {
     });
 
     const check = await res.json();
-    console.log(check.data);
-    setRate(check.data);
-    // check.data.array.forEach((element) => {
-    //   let n = hospital.length;
-    //   let i = 0;
-    //   for (; i < n; i++) {
-    //     if (hospital[i].name === element.email) {
-    //       hospital[i].rating = element.rating;
-    //     }
-    //   }
-    // });
+     console.log(check.data)
+     setarr(check.data)
+
   };
   useEffect(() => {
     fetchrate();
@@ -166,7 +159,7 @@ const HospitalList = () => {
     <div id="bahar">
       <div id="hosl">
         <h1 id="hosh">Book an Appointment</h1>
-        {hospital.map((item) => {
+        {arr.map((item) => {
           return (
             <div className="dabba">
               <h1 className="dabbah">{item.name}</h1>
@@ -179,15 +172,19 @@ const HospitalList = () => {
               <h4>
                 <u>Pincode</u> : {item.pincode}
               </h4>
-              <h1>Ratings :{item.rating}</h1>
+              <h1>Ratings :{item.rating}
+                
+                </h1>
               <button
                 onClick={(event) => {
                   book(event);
                 }}
                 className="bookbutton"
               >
+                
                 Book Now
               </button>
+             
             </div>
           );
         })}
