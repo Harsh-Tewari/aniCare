@@ -32,7 +32,7 @@ const GovtDashboard = () => {
   const fetchData = async () => {
     const email = localStorage.getItem("vetname");
     const dat = { email };
-    const res = await fetch("/api/govLogin/fetchHospitalData", {
+    const res = await fetch("/api/govLogin/govFetch", {
       method: "POST",
       headers: {
         //always use this

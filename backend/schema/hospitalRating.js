@@ -2,15 +2,27 @@ const mongoose = require('mongoose');
 
 const hospitalRating = new mongoose.Schema({
 
-    email:{
+   name:{
         type:String,
         
     },
     rating:{
         type:String
     },
-    totalRater:{
-        type:Number
+    services:{
+        type:String
+    },
+    pincode:{
+        type:String
+    },
+    address:{
+        type:String
+    },
+    homeVisit:{
+        type:String
+    },
+    contact:{
+        type:String
     }
 })
 

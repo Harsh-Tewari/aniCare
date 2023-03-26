@@ -97,6 +97,8 @@ router.post("/fetchHospitalData", async (req, res) => {
   const data = await petUser.find({ hospitalBooked: checkEmail });
   res.status(200).json({ success: true, data: data });
 });
+
+
 router.post("/appointRequest", async (req, res) => {
   const email = req.body.email;
   const data = await petParent.find({ email: email });
@@ -107,10 +109,9 @@ router.post("/rateHospital", async (req, res) => {
   const name = req.body.hospitalName;
   const rating = req.body.rating;
 
-console.log(name)
-// const n=
-const data=await hospitalRating.findOne({name:name})
-await hospitalRating.findOneAndUpdate({name,rating})
+
+const data=await hospitalRating.findOneAndUpdate({name:name,rating:rating})
+
 
 console.log(data)
   res.status(200).json({ success: true });
