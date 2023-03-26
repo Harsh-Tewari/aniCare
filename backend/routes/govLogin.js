@@ -113,7 +113,7 @@ router.post("/rateHospital", async (req, res) => {
 const data=await hospitalRating.findOneAndUpdate({name:name,rating:rating})
 
 
-console.log(data)
+
   res.status(200).json({ success: true });
 });
 
