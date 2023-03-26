@@ -1,6 +1,7 @@
 import React from "react";
 import "./Hospitallist.css";
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 const { useState } = React;
 const HospitalList = () => {
   const [arr, setarr] = useState([]);
@@ -115,6 +116,7 @@ const HospitalList = () => {
       rating: "4.5",
     },
   ];
+  const navigate=useNavigate();
   const book = async (event) => {
     const element = event.currentTarget;
     var parent = element.parentNode;
@@ -136,6 +138,7 @@ const HospitalList = () => {
     console.log(check);
     if (check.success) {
       alert("Appointment Booked Successfully!");
+      navigate("/petParentDashboard");
     }
   };
 
