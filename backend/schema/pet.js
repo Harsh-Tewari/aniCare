@@ -17,6 +17,7 @@ const petSchema = new mongoose.Schema({
   },
   lastVaccination: {
     type: String,
+    default: "27-02-2023",
   },
   parentId: {
     type: String,

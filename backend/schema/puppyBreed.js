@@ -16,6 +16,9 @@ const puppyBreed = new mongoose.Schema({
   breedId: {
     type: String,
   },
+  certificate: {
+    type: String,
+  },
 });
 
 module.exports = mongoose.model("puppyBreed", puppyBreed);

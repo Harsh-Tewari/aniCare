@@ -1,9 +1,8 @@
 import React from "react";
 import "./Hospitallist.css";
 import { useEffect } from "react";
-const { useState} = React
+const { useState } = React;
 const HospitalList = () => {
-  
   const [arr, setarr] = useState([]);
   const hospital = [
     {
@@ -135,6 +134,10 @@ const HospitalList = () => {
 
     const check = await res.json();
     console.log(check);
+    if (check.success) {
+      alert("Appointment Booked Successfully!");
+      navigate("/petParentDashboard");
+    }
   };
 
   const fetchrate = async () => {
@@ -147,9 +150,8 @@ const HospitalList = () => {
     });
 
     const check = await res.json();
-     console.log(check.data)
-     setarr(check.data)
-
+    console.log(check.data);
+    setarr(check.data);
   };
   useEffect(() => {
     fetchrate();
@@ -172,19 +174,15 @@ const HospitalList = () => {
               <h4>
                 <u>Pincode</u> : {item.pincode}
               </h4>
-              <h1>Ratings :{item.rating}
-                
-                </h1>
+              <h1>Ratings :{item.rating}</h1>
               <button
                 onClick={(event) => {
                   book(event);
                 }}
                 className="bookbutton"
               >
-                
                 Book Now
               </button>
-             
             </div>
           );
         })}

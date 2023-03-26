@@ -4,16 +4,20 @@ import "./puppyfarm.css";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import NewBreeding from "../inputcomps/NewBreeding";
+import NewPuppy from "../inputcomps/NewPuppy";
 const PuppyFarmDashboard = () => {
   const navigate = useNavigate();
   const [info, setinfo] = useState([]);
   const [info1, setinfo1] = useState([]);
   const [show, setShow] = useState(false);
+  const [show1, setShow1] = useState(false);
 
   const handleClick = (e) => {
     console.log(show);
     if (e.target.name === "showpass") {
       setShow(!show);
+    } else if (e.target.name === "showform") {
+      setShow1(!show1);
     }
   };
   const fetchData = async () => {
@@ -60,6 +64,7 @@ const PuppyFarmDashboard = () => {
     localStorage.removeItem("farm_email");
     navigate("/");
   };
+
   return (
     <div id="ppd">
       <nav>
@@ -95,9 +100,11 @@ const PuppyFarmDashboard = () => {
             );
           })}
         </table>
-        <button type="submit" id="addpt">
+        <button name="showform" id="addpt" onClick={handleClick}>
           Add Pet +
         </button>
+        <br />
+        {show1 && <NewPuppy />}
 
         <h1>Breeding Information</h1>
         <table>
@@ -116,7 +123,9 @@ const PuppyFarmDashboard = () => {
                 <td>{item.breedId}</td>
                 <td>{item.dateOfexpiry}</td>
                 <td>
-                  <button className="view">view</button>
+                  <a href={item.certificate}>
+                    <button className="view">view</button>
+                  </a>
                 </td>
               </tr>
             );

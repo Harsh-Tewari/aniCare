@@ -13,7 +13,7 @@ import { useNavigate } from "react-router-dom";
 
 const NewBreeding = () => {
   const navigate = useNavigate();
-  const [pic, setpic] = useState("");
+  const [pic, setPic] = useState("");
   const [edate, setedate] = useState("");
   const [cert, setcert] = useState("");
   const [fid, setfid] = useState("");
@@ -21,16 +21,24 @@ const NewBreeding = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    if (mid === "" || fid === "" || cert === "" || edate === "") {
+    const ln = localStorage.getItem("pic_link");
+    if (mid === "" || fid === "" || cert === "" || edate === "" || ln == "") {
       return;
     } else {
       const breedId = cert;
+      const certificate = ln;
       const email = localStorage.getItem("farm_email");
       const maleId = mid;
       const femaleId = fid;
       const dateOfExpiry = edate;
-      const data = { email, maleId, femaleId, dateOfExpiry, breedId };
+      const data = {
+        email,
+        certificate,
+        maleId,
+        femaleId,
+        dateOfExpiry,
+        breedId,
+      };
 
       const res = await fetch("/api/puppyFarm/breed", {
         method: "POST",
@@ -59,6 +67,44 @@ const NewBreeding = () => {
         setfid("");
         setmid("");
       }
+    }
+  };
+
+  const postDetails = (pics) => {
+    if (pics === undefined) {
+      alert("choose a document");
+      return;
+    }
+    console.log(pics);
+    if (
+      pics.type === "application/pdf" ||
+      pics.type === "image/jpeg" ||
+      pics.type === "image/jpg" ||
+      pics.type === "image/png"
+    ) {
+      const data = new FormData();
+      data.append("file", pics);
+      data.append("upload_preset", "aniCare");
+      data.append("cloud_name", "dhg0kwh9c");
+      fetch("https://api.cloudinary.com/v1_1/dhg0kwh9c/upload", {
+        method: "post",
+        body: data,
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          const ln = data.url.toString();
+          console.log(ln);
+          setPic(ln);
+          localStorage.setItem("pic_link", ln);
+          console.log(pic);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+      console.log("uploading...");
+    } else {
+      alert("please select valid doc");
+      return;
     }
   };
 
@@ -111,6 +157,15 @@ const NewBreeding = () => {
             value={edate}
             name="edate"
             onChange={(e) => setedate(e.target.value)}
+          />
+        </FormControl>
+        <FormControl isRequired>
+          <FormLabel>Certificate Expiry</FormLabel>
+          <Input
+            type="file"
+            placeholder="Enter certificate"
+            name="pres"
+            onChange={(e) => postDetails(e.target.files[0])}
           />
         </FormControl>
 
